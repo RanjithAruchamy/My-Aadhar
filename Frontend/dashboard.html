@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Aadhar Portal</title>
+    <link rel="stylesheet" href="./dashboard.css" />
+  </head>
+  <body>
+    <div class="container" onload="renderData()">
+      <button onclick="logout()">logout</button>
+      <h3 id="title"></h3>
+      <p>
+        Your Aadhar is validated successfully. You are eligible to apply the
+        following schemes.
+      </p>
+      <ul>
+        <li>
+          Pension Scheme
+          <a href="#">Apply</a>
+        </li>
+        <li>
+          Life Insurance Scheme
+          <a href="#">Apply</a>
+        </li>
+        <li>
+          Public Provident Fund Scheme
+          <a href="#">Apply</a>
+        </li>
+      </ul>
+    </div>
+
+    <script>
+      const BASE_URL = `http://localhost:8000`;
+      if (!localStorage.getItem("Token")) {
+        window.location.assign("/");
+      }
+      fetch(`${BASE_URL}/api/me`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: localStorage.getItem("Token"),
+        },
+      })
+        .then((res) => res.json())
+        .then((result) => {
+          document.getElementById(
+            "title"
+          ).innerText = `Welcome ${result.name}!`;
+        })
+        .catch((err) => {});
+
+      function logout() {
+        localStorage.clear();
+        window.location.assign("/");
+      }
+    </script>
+  </body>
+</html>

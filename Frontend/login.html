@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Aadhar Portal</title>
+    <link rel="stylesheet" href="./login.css" />
+  </head>
+  <body>
+    <form
+      id="form"
+      autocomplete="off"
+      enctype="application/json"
+      onsubmit="event.preventDefault(); onLogin();"
+    >
+      <div class="container">
+        <h1>Log In</h1>
+        <p>Log in to your account!</p>
+
+        <label for="aadharNumber"><b>Aadhar Number</b></label>
+        <input
+          id="aadharNumber"
+          type="text"
+          placeholder="Enter Aadhar Number"
+          name="aadharNumber"
+          required
+        />
+        <label for="psw"><b>Password</b></label>
+        <input
+          id="password"
+          type="password"
+          placeholder="Enter Password"
+          name="psw"
+          required
+        />
+
+        <div class="clearfix">
+          <button type="submit" class="btn">Log In</button>
+          <p class="login">New User? <a href="./index.html">Sign Up</a></p>
+        </div>
+        <p id="success-message" class="success-message" hidden></p>
+        <p id="error-message" class="error-message" hidden></p>
+      </div>
+    </form>
+    <script src="./index.js"></script>
+  </body>
+</html>
